@@ -8,30 +8,35 @@ $.ajax({
 }).then(function(response){
     console.log(response)
 
-    // This loops throught the topic array and makes a button for each index
-    for (var i = 0; i < topics.length; i++) {
-        var addButton = $("<button>")
-        $("#buttons").append(addButton)
-        addButton.text(topics[i]);
-    }
+   
 
     // Gives buttons an on click event
     $("#buttons").on("click", function(){
         console.log("work dang it!!!")
     })
    
-    function addNewButton() {
-        $("#mySearch").on("click", function() {
-            var animal = $("#topicInput").val().trim();
-            if (animal == ""){
-                return false;//no blank buttons
-            }
-            topic.push(animal);
-    
-            displayGifButtons();
-            return false;
-            });
+    // adds new buttons when user uses search bar
+    function renderButtons() {
+        $("#buttons").empty()
+         // This loops throught the topic array and makes a button for each index
+    for (var i = 0; i < topics.length; i++) {
+        var addButton = $("<button>")
+        $("#buttons").append(addButton)
+        addButton.text(topics[i]);
+    }
     }
 
-});
+     $("#add-search").on("click", function(event){
+            event.preventDefault()
 
+            var userSearch = $("#search-input").val()
+
+            topics.push(userSearch)
+            console.log('topics', topics)
+
+            $("#search-input").val(" ")
+            renderButtons();
+        })
+     
+
+})
