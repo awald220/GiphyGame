@@ -1,4 +1,4 @@
-var topics = ["cat", "bird", "koala", "panda", "rat", "rooster", "skunk", "otter", "pig", "flamingo", "yak", "shark", "rabbit"]
+var topics = ["olaf", "nemo", "pascal", "sven", "genie", "gru","zazu", "snow white", "chicken little", "walle", "dory", "simba", "cinderella", "angry birds", "timon and pumbaa", "elsa", "iago", "minions", "kronk"]
 
 function displayGif(){
 $("#gifDisplay").empty();

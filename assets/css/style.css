@@ -9,6 +9,7 @@ body {
     width: 20%;
     height: 20px;
     float: right;
+    margin-right: -50px;
 }
 
 #search-input {
