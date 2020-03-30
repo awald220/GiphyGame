@@ -3,18 +3,23 @@ var topics = ["beaver", "cat", "bird", "koala", "panda", "rat", "rooster", "skun
 function displayGif(){
 $("#gifDisplay").empty();
 var topic = $(this).attr("data-name");
-var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=3UrbvjjXIdCJBLf193bSUFx6flMcvxUC&limit=10";
+var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=3UrbvjjXIdCJBLf193bSUFx6flMcvxUC&limit=1";
 
 $.ajax({
     url: queryURL,
     method: "GET"
 }).then(function(response){
     console.log(response)
+    for (var j = 0; j < response.data.length; j++) {
     var rating = $("<p>")
-    var img = $("<p>")
-    rating.text(response.rating)
-    img.text(response.url)
+    var img = $("<img>")
+    rating.text(response.data[j].rating)
+    img.attr("src", response.data[j].source)
     $("#gifDisplay").append(rating, img)
+    
+        
+    }
+    
    
 })
 }
@@ -40,7 +45,7 @@ $.ajax({
      $("#add-search").on("click", function(event){
             event.preventDefault()
 
-            var userSearch = $("#search-input").val()
+            var userSearch = $("#search-input").val().trim();
 
             topics.push(userSearch)
             console.log('topics', topics)
@@ -49,7 +54,7 @@ $.ajax({
             renderButtons();
         })
         
-        $(document).on("click", "button", displayGif);
+        $(document).on("click", ".button", displayGif);
 
         renderButtons();
 
