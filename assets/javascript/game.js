@@ -1,9 +1,9 @@
-var topics = ["beaver", "cat", "bird", "koala", "panda", "rat", "rooster", "skunk", "otter", "pig", "flamingo", "yak", "shark", "rabbit", "cow"]
+var topics = ["cat", "bird", "koala", "panda", "rat", "rooster", "skunk", "otter", "pig", "flamingo", "yak", "shark", "rabbit"]
 
 function displayGif(){
 $("#gifDisplay").empty();
 var topic = $(this).attr("data-name");
-var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=3UrbvjjXIdCJBLf193bSUFx6flMcvxUC&limit=1";
+var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=3UrbvjjXIdCJBLf193bSUFx6flMcvxUC&limit=10";
 
 $.ajax({
     url: queryURL,
@@ -14,7 +14,7 @@ $.ajax({
     var rating = $("<p>")
     var img = $("<img>")
     rating.text(response.data[j].rating)
-    img.attr("src", response.data[j].source)
+    img.attr("src", response.data[j].images.original.url)
     $("#gifDisplay").append(rating, img)
     
         
