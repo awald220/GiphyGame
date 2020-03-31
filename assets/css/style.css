@@ -1,6 +1,7 @@
 body {
     width: 100%;
     overflow-x: hidden;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 #search-form {
@@ -13,7 +14,8 @@ body {
 }
 
 #search-input {
-    width: 120px;
+    width: 150px;
+    height: 20px;
     margin-bottom: 10px;
     border: teal solid 1px;
 }
@@ -24,6 +26,8 @@ body {
     border: grey solid 1px;
     margin: 5px;
     color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15px;
 
 }
 
@@ -37,6 +41,8 @@ body {
     border: grey solid 1px;
     margin: 5px;
     color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15px;
 }
 
 #gifDisplay {
@@ -51,4 +57,12 @@ body {
 #content{
   
     width: 80%;
+}
+.gif{
+    border: 2px solid #cccccc;
+    margin-right: 20px;
+}
+.title {
+    padding: 10px 0px 10px ;
+    margin-bottom: 5px;
 }

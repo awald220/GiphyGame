@@ -1,7 +1,10 @@
+// array of pre-thought-of topics
 var topics = ["olaf", "nemo", "pascal", "sven", "genie", "gru","zazu", "snow white", "chicken little", "walle", "dory", "simba", "cinderella", "angry birds", "timon and pumbaa", "elsa", "iago", "minions", "kronk"]
 
+// this function display gif to the screen 
 function displayGif(){
-$("#gifDisplay").empty();
+// this line is if you dont want them to stack with the prepend
+// $("#gifDisplay").empty();
 var topic = $(this).attr("data-name");
 var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=3UrbvjjXIdCJBLf193bSUFx6flMcvxUC&limit=10";
 
@@ -10,9 +13,14 @@ $.ajax({
     method: "GET"
 }).then(function(response){
     console.log(response)
-    for (var j = 0; j < response.data.length; j++) {
+    for (var j = 0; j < response.data.length; j++) { 
+    var title = $("<p>")
+    title.text("Title: " + response.data[j].title)
+    title.addClass("title")
+   
     var rating = $("<p>")
-    rating.text(response.data[j].rating)
+    rating.text("Rating: " + response.data[j].rating)
+    rating.addClass("rating")
 
     var img = $("<img>");
     img.attr("src", response.data[j].images.fixed_height_still.url);
@@ -20,7 +28,7 @@ $.ajax({
     img.attr("data-animate", response.data[j].images.fixed_height.url);
     img.attr("data-state", "still");
     img.addClass("gif");
-    $("#gifDisplay").append(rating, img);   
+    $("#gifDisplay").prepend(img, rating, title);   
     } 
 
       // this fuction pauses and plays the gif upon being clicked 
@@ -74,27 +82,7 @@ $.ajax({
             renderButtons();
         })
         
-
+        // when button is clicked the displayGif function is activated
         $(document).on("click", ".button", displayGif);
 
         renderButtons();
-
-        
-
-        // this fuction pauses and plays the gif upon being clicked 
-        $(".button").on("click", function(){
-
-            
-        var state = $(this).attr("data-state")
-
-        if (state === "still") {
-            $(this).attr("src", $(this).attr("data-animate"));
-            $(this).attr("data-state", "animate");
-        }
-        else{
-            $(this).attr("src", $(this).attr("data-still"));
-            $(this).attr("data-state", "still");
-        }
-
-            console.log(state)
-         })
